@@ -31,3 +31,9 @@ def select_all_files():
     os.chdir("input_data/xml")
     files = glob("*")
     return files
+
+def select_all_CSV_files():
+    os.chdir("input_data/csv")
+    files = glob("*")
+    return files
+
