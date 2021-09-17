@@ -1,10 +1,9 @@
 import xml.etree.ElementTree as ET
 import json
 from datetime import datetime
-from database.db import save_to_mongo_db
+from utils.api_data import get_api_data
 
-
-def XMLParser(filename):
+def XMLParser_enrich(filename):
     print(filename)
     tree = ET.parse(filename)
     root = tree.getroot()
@@ -31,11 +30,13 @@ def XMLParser(filename):
     
     vehicles = []
     for elm in root.findall("Transaction/Customer/Units/Auto/Vehicle"): 
+        vehicle_enriched = get_api_data(elm.find('VinNumber').text, elm.find('ModelYear').text)
         vehicle_object = {
                 "id": elm.get('id'),
                 "make": elm.find('Make').text,
                 "vin_number": elm.find('VinNumber').text,
                 "model_year": elm.find('ModelYear').text,
+                **vehicle_enriched
         }
         vehicles.append(vehicle_object)
     data['transaction'][0]['vehicles'] = vehicles
@@ -45,11 +46,6 @@ def XMLParser(filename):
     
     filename_format = filename.split('.')
     
-    
-    with open(f"../../output/xml/{timestamp}_{filename_format[0]}.json", 'w',encoding ='utf8') as outfile:
-        json.dump(data, outfile, indent=4, ensure_ascii=False)
-    
-    # Save to local mongo database
-    save_to_mongo_db('xml', data)
 
-
+    with open(f"../../output/xml/{timestamp}_{filename_format[0]}_enriched.json", 'w',encoding ='utf8') as outfile:
+            json.dump(data, outfile, indent=4, ensure_ascii=False)
