@@ -5,7 +5,7 @@ def save_to_mongo_db(format,data):
     
     try:
         conn = MongoClient()
-        print("Connected successfully!!!")
+        print("Connected to MongoDB successfully!!!")
     except:  
         print("Could not connect to MongoDB")
 
@@ -14,5 +14,11 @@ def save_to_mongo_db(format,data):
     db = conn.truflu
     
     # Created names
-    collection = db.format
+    if format == 'csv':
+        collection = db.csv
+    elif format == 'xml':
+        collection = db.xml
+    else:
+        print('Wrong Format !!')
+    
     collection.insert_one(data)

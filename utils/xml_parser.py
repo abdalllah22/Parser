@@ -2,7 +2,7 @@ import xml.etree.ElementTree as ET
 import json
 from datetime import datetime
 import os
-
+from database.db import save_to_mongo_db
 
 def XMLParser(filename):
     print(filename)
@@ -48,3 +48,6 @@ def XMLParser(filename):
     
     with open(f"../../output/xml/{timestamp}_{filename_format[0]}.json", 'w',encoding ='utf8') as outfile:
         json.dump(data, outfile, indent=4, ensure_ascii=False)
+    
+    # Save to local mongo database
+    save_to_mongo_db('xml', data)
