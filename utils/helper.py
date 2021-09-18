@@ -1,6 +1,8 @@
 import os
 from glob import glob
 import re
+import json
+from datetime import datetime
 
 
 def get_format_of_file(formats):
@@ -46,4 +48,14 @@ def match_csv_files(filename1, filename2):
         pass
     else:
         return "Switch Files !!"
+
+def save_json_file_from_xml(filename, data, enriched=''):
+    
+    now = datetime.now()
+    timestamp = datetime.timestamp(now)
+    filename_format = filename.split('.')
+    
+    
+    with open(f"../../output/xml/{timestamp}_{filename_format[0]}{enriched}.json", 'w',encoding ='utf8') as outfile:
+        json.dump(data, outfile, indent=4, ensure_ascii=False)
 

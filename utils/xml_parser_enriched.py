@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 import json
 from datetime import datetime
 from utils.api_data import get_api_data
+from utils.helper import save_json_file_from_xml
 
 def XMLParser_enrich(filename):
     print(filename)
@@ -41,11 +42,6 @@ def XMLParser_enrich(filename):
         vehicles.append(vehicle_object)
     data['transaction'][0]['vehicles'] = vehicles
         
-    now = datetime.now()
-    timestamp = datetime.timestamp(now)
     
-    filename_format = filename.split('.')
-    
-
-    with open(f"../../output/xml/{timestamp}_{filename_format[0]}_enriched.json", 'w',encoding ='utf8') as outfile:
-            json.dump(data, outfile, indent=4, ensure_ascii=False)
+    # Save to json file
+    save_json_file_from_xml(filename,data,'_enriched')
