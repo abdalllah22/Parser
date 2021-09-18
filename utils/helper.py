@@ -27,7 +27,7 @@ def get_second_file_name(name):
     else:
         return second_file        
 
-def select_all_files():
+def select_all_xml_files():
     os.chdir("input_data/xml")
     files = glob("*")
     return files

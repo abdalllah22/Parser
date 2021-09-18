@@ -4,7 +4,7 @@ from utils.xml_parser import XMLParser
 from utils.xml_parser_enriched import XMLParser_enrich
 from utils.csv_parser import CSVParser 
 from utils.helper import ( get_format_of_file, get_first_file_name,
-                            get_second_file_name, select_all_files,
+                            get_second_file_name, select_all_xml_files,
                             select_all_CSV_files, match_csv_files )
 
 
@@ -13,7 +13,7 @@ def main():
     file_format = get_format_of_file(sys.argv[1])
     try:
         if file_format == 'xml':
-            files = select_all_files()
+            files = select_all_xml_files()
             if get_first_file_name(sys.argv[2]) in files:
                 XMLParser(sys.argv[2])
                 XMLParser_enrich(sys.argv[2])
