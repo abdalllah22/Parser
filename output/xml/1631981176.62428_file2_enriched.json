@@ -4,7 +4,7 @@
         {
             "date": "2021-12-07",
             "customer": {
-                "customer_id": "ID1011200",
+                "id": "ID1011200",
                 "name": "Célestin Travert",
                 "phone": "252-414-7396",
                 "address": "1429  Joyce Street"
@@ -14,7 +14,11 @@
                     "id": "V1824",
                     "make": "Ford",
                     "vin_number": "1FDNF21L73EB60615",
-                    "model_year": "2003"
+                    "model_year": "2003",
+                    "Model": "F-250",
+                    "Manufacturer": "FORD MOTOR COMPANY, USA",
+                    "PlantCountry": "UNITED STATES (USA)",
+                    "VehicleType": "INCOMPLETE VEHICLE"
                 }
             ]
         }

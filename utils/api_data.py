@@ -10,4 +10,5 @@ def get_api_data(vin_no, model):
                 "PlantCountry": API_data["Results"][0]["PlantCountry"],
                 "VehicleType": API_data["Results"][0]["VehicleType"]
     }
+    
     return vehicle_enriched

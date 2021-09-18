@@ -4,7 +4,7 @@
         {
             "date": "2021-10-10",
             "customer": {
-                "customer_id": "ID101000",
+                "id": "ID101000",
                 "name": "Amelia Law",
                 "phone": "070 6119 2887",
                 "address": "47  Prince Consort Road"

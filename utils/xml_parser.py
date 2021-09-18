@@ -4,14 +4,16 @@ from utils.helper import save_json_file_from_xml
 
 
 def XMLParser(filename):
-    print(filename)
+    # Get xml file to parse
     tree = ET.parse(filename)
     root = tree.getroot()
     
+    # data stored in json file
     data = {}
     data['file_name'] = filename
     data['transaction'] = []
     
+    # get customers data
     for elm in root.findall("Transaction"):
         date = elm.find('Date').text
         customer_id = elm.find('Customer').get('id')
@@ -21,13 +23,15 @@ def XMLParser(filename):
         data['transaction'].append({
             "date": date,
             "customer": {
-                "customer_id": customer_id,
+                "id": customer_id,
                 "name" : name,
                 "phone": phone,
                 "address": address,
             }
         })
     
+    
+    # get vehicles data
     vehicles = []
     for elm in root.findall("Transaction/Customer/Units/Auto/Vehicle"): 
         vehicle_object = {
@@ -38,13 +42,10 @@ def XMLParser(filename):
         }
         vehicles.append(vehicle_object)
     data['transaction'][0]['vehicles'] = vehicles
-        
     
-    
-
     # Save to json file
     save_json_file_from_xml(filename,data)
-    
+
     # Save to local mongo database
     db_data = {**data}
     save_to_mongo_db('xml', db_data)

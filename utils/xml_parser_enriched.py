@@ -3,14 +3,16 @@ from utils.api_data import get_api_data
 from utils.helper import save_json_file_from_xml
 
 def XMLParser_enrich(filename):
-    print(filename)
+    # Get xml file to parse
     tree = ET.parse(filename)
     root = tree.getroot()
-    
+
+    # data stored in json file
     data = {}
     data['file_name'] = filename
     data['transaction'] = []
     
+    # get customers data
     for elm in root.findall("Transaction"):
         date = elm.find('Date').text
         customer_id = elm.find('Customer').get('id')
@@ -20,13 +22,14 @@ def XMLParser_enrich(filename):
         data['transaction'].append({
             "date": date,
             "customer": {
-                "customer_id": customer_id,
+                "id": customer_id,
                 "name" : name,
                 "phone": phone,
                 "address": address,
             }
         })
     
+    # get vehicles data
     vehicles = []
     for elm in root.findall("Transaction/Customer/Units/Auto/Vehicle"): 
         vehicle_enriched = get_api_data(elm.find('VinNumber').text, elm.find('ModelYear').text)
@@ -40,7 +43,6 @@ def XMLParser_enrich(filename):
         vehicles.append(vehicle_object)
     data['transaction'][0]['vehicles'] = vehicles
         
-    
     # Save to json file
     save_json_file_from_xml(filename,data,'_enriched')
 
