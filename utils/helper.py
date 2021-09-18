@@ -18,29 +18,17 @@ def get_format_of_file(formats):
         return file_format
 
 
-def get_first_file_name(name):
+def get_file_name(name):
     """
     :param name: file name to read
     :return: file name 
     """
     try:
-        first_file = name
+        file = name
     except Exception as e:
         print(e)
     else:
-        return first_file
-
-def get_second_file_name(name):
-    """
-    :param name: file name to read
-    :return: file name 
-    """
-    try:
-        second_file = name
-    except Exception as e:
-        print(e)
-    else:
-        return second_file        
+        return file
 
 
 def select_all_xml_files():
