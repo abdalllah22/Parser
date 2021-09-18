@@ -40,10 +40,15 @@ def XMLParser(filename):
     data['transaction'][0]['vehicles'] = vehicles
         
     
+    
+
     # Save to json file
     save_json_file_from_xml(filename,data)
     
     # Save to local mongo database
-    save_to_mongo_db('xml', data)
+    db_data = {**data}
+    save_to_mongo_db('xml', db_data)
+
+    return data
 
 

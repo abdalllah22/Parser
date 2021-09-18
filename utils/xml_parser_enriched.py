@@ -43,3 +43,5 @@ def XMLParser_enrich(filename):
     
     # Save to json file
     save_json_file_from_xml(filename,data,'_enriched')
+
+    return data
