@@ -1,7 +1,6 @@
 import pandas as pd
 import json
 from datetime import datetime
-import os
 from database.db import save_to_mongo_db 
 
 def CSVParser(filename1, filename2):

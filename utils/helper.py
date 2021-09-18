@@ -1,6 +1,5 @@
 import os
 from glob import glob
-import sys
 import re
 
 
