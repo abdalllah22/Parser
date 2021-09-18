@@ -59,3 +59,10 @@ def save_json_file_from_xml(filename, data, enriched=''):
     with open(f"../../output/xml/{timestamp}_{filename_format[0]}{enriched}.json", 'w',encoding ='utf8') as outfile:
         json.dump(data, outfile, indent=4, ensure_ascii=False)
 
+def save_json_file_from_csv(filename1, filename2, data):
+    now = datetime.now()
+    timestamp = datetime.timestamp(now)
+
+    with open(f"../../output/csv/{timestamp}_{filename1}_{filename2}.json", 'w',encoding ='utf8') as outfile:
+        json.dump(data, outfile, indent=4, ensure_ascii=False)
+

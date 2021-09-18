@@ -1,6 +1,4 @@
 import xml.etree.ElementTree as ET
-import json
-from datetime import datetime
 from database.db import save_to_mongo_db
 from utils.helper import save_json_file_from_xml
 

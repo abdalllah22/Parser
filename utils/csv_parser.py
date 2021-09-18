@@ -1,7 +1,6 @@
 import pandas as pd
-import json
-from datetime import datetime
-from database.db import save_to_mongo_db 
+from database.db import save_to_mongo_db
+from utils.helper import save_json_file_from_csv 
 
 def CSVParser(filename1, filename2):
     customer_df = pd.read_csv(filename1)
@@ -36,13 +35,8 @@ def CSVParser(filename1, filename2):
                 data['transaction'][index1]['vehicles'] = vehicles
             
     
-    
-    now = datetime.now()
-    timestamp = datetime.timestamp(now)
-
-    # Save to Json file
-    with open(f"../../output/csv/{timestamp}_{filename1}_{filename2}.json", 'w',encoding ='utf8') as outfile:
-        json.dump(data, outfile, indent=4, ensure_ascii=False)
+    # Save to json file
+    save_json_file_from_csv(filename1, filename2, data)
     
     # Save to local mongo database
     save_to_mongo_db('csv', data)

@@ -1,6 +1,4 @@
 import xml.etree.ElementTree as ET
-import json
-from datetime import datetime
 from utils.api_data import get_api_data
 from utils.helper import save_json_file_from_xml
 
