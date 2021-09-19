@@ -1,8 +1,7 @@
 import os 
 import unittest
-from utils.helper import ( get_format_of_file, get_first_file_name,
-                            get_second_file_name, select_all_xml_files,
-                            select_all_CSV_files, match_csv_files ) 
+from utils.helper import ( get_format_of_file, get_file_name,
+                            select_all_xml_files, match_csv_files ) 
 
 
 class TestHelper(unittest.TestCase):
@@ -12,9 +11,9 @@ class TestHelper(unittest.TestCase):
         result = get_format_of_file('csv')
         self.assertIn(result, expected)
     
-    def test_get_first_file_name(self):
+    def test_get_file_name(self):
         expected = ['file1.xml', 'file2.xml', 'file3.xml' ]
-        result = get_first_file_name('file1.xml')
+        result = get_file_name('file1.xml')
         self.assertIn(result, expected)
     
     def test_select_all_xml_files(self):
