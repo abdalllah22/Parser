@@ -1,6 +1,6 @@
 import pandas as pd
-from database.db import save_to_mongo_db
-from utils.helper import save_json_file_from_csv 
+from database.db import save_to_mongo_db 
+from utils.api_data import get_api_data
 
 def CSVParser(filename1, filename2):
     # Get csv file to parse
@@ -29,19 +29,17 @@ def CSVParser(filename1, filename2):
         vehicles = []
         for index2, vehicle_row in vehicle_df.iterrows():
             if vehicle_row['owner_id'] == custoner_row['id']:
+                vehicle_enriched = get_api_data(vehicle_row['vin_number'], vehicle_row['model_year'])
                 vehicle_object = {
                     "id": vehicle_row['id'],
                     "make": vehicle_row['make'],
                     "vin_number": vehicle_row['vin_number'],
                     "model_year": vehicle_row['model_year'],
+                    **vehicle_enriched
                 }
                 vehicles.append(vehicle_object)
                 data['transaction'][index1]['vehicles'] = vehicles
             
-    
-    # Save to json file
-    save_json_file_from_csv(filename1, filename2, data)
-    
     # Save to local mongo database
     save_to_mongo_db('csv', data)
     

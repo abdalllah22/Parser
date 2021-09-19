@@ -1,7 +1,6 @@
 import sys
 
 from utils.xml_parser import XMLParser
-from utils.xml_parser_enriched import XMLParser_enrich
 from utils.csv_parser import CSVParser 
 from utils.helper import ( get_format_of_file, get_file_name,
                             select_all_xml_files,select_all_CSV_files, 
@@ -21,7 +20,6 @@ def main():
             
             if get_file_name(sys.argv[2]) in files:
                 XMLParser(sys.argv[2])
-                XMLParser_enrich(sys.argv[2])
             else:
                 print('File does not exis')
         
