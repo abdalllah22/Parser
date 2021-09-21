@@ -1,12 +1,14 @@
 import pandas as pd
 from database.db import save_to_mongo_db 
 from utils.api_data import get_api_data
+from typing import Dict
+from .parser import Parser
 
-class CSVParser():
+class CSVParser(Parser):
     def __init__(self):
-        pass
+        Parser.__init__(self)
 
-    def get_data_from_csv(self,filename1, filename2):
+    def get_data(self,filename1, filename2) -> Dict:
         # Get csv file to parse
         customer_df = pd.read_csv(filename1)
         vehicle_df = pd.read_csv(filename2)

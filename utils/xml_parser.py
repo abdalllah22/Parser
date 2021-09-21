@@ -1,14 +1,15 @@
 import xml.etree.ElementTree as ET
 from utils.api_data import get_api_data
 from database.db import save_to_mongo_db
+from typing import Dict
+from .parser import Parser
 
-
-class XMLParser(): 
+class XMLParser(Parser): 
 
     def __init__(self):
-        pass
+        Parser.__init__(self)
     
-    def get_data_from_xml(self,filename):
+    def get_data(self,filename) -> Dict:
         # Get xml file to parse
         tree = ET.parse(filename)
         root = tree.getroot()

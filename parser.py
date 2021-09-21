@@ -22,7 +22,7 @@ def main():
             files = helpers.select_all_xml_files()
             
             if helpers.get_file_name(sys.argv[2]) in files:
-                xml_parser.get_data_from_xml(sys.argv[2])
+                xml_parser.get_data(sys.argv[2])
             else:
                 print('File does not exis')
         
@@ -31,7 +31,7 @@ def main():
             
             if helpers.get_file_name(sys.argv[2]) and helpers.get_file_name(sys.argv[3]) in files:
                 if helpers.match_csv_files(sys.argv[2],sys.argv[3]) is None:
-                    csv_parser.get_data_from_csv(sys.argv[2], sys.argv[3])
+                    csv_parser.get_data(sys.argv[2], sys.argv[3])
                 else:
                     print(helpers.match_csv_files(sys.argv[2],sys.argv[3]))
             else:
