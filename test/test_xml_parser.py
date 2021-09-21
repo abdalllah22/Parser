@@ -3,7 +3,7 @@ from utils.xml_parser import XMLParser
 import unittest.mock as mock
 
 class TestXmlParser(unittest.TestCase):
-    
+    xml_parser = XMLParser()
     maxDiff = None
     def test_XMLParser(self):
         
@@ -45,7 +45,7 @@ class TestXmlParser(unittest.TestCase):
             ]
         }
         
-        result = XMLParser('file1.xml')
+        result = self.xml_parser.get_data_from_xml('file1.xml')
         self.assertDictEqual(result, expected)
         
 

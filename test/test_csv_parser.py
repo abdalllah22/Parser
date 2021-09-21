@@ -5,7 +5,7 @@ import unittest.mock as mock
 
 
 class TestCsvParser(unittest.TestCase):
-    
+    csv_parser = CSVParser()
     maxDiff = None
     def test_CSVParser(self):
         
@@ -90,7 +90,7 @@ class TestCsvParser(unittest.TestCase):
         }
         
         path = 'input_data/csv'
-        result = CSVParser(f'{path}/customers.csv', f'{path}/vehicles.csv')
+        result = self.csv_parser.get_data_from_csv(f'{path}/customers.csv', f'{path}/vehicles.csv')
         self.assertDictEqual(result, expected)
         
         
